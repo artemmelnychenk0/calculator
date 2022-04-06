@@ -43,10 +43,14 @@ function operate() {
         result = multiply(a, b)
         display.textContent = result
     } else if (operator == '/') {
-        result = divide(a, b)
-        display.textContent = result
+        if (result == Infinity) {
+            display.textContent = 'error'
+        } else {
+            result = divide(a, b)
+            display.textContent = (Math.round(result * 100) / 100)
+        }
     } else {
-        console.log('Oops it is not working')
+        return
     }
 }
 
@@ -54,6 +58,9 @@ nums.forEach((num) => {
     num.addEventListener('click', () => {
         if (display.textContent == result) {
             display.textContent = ''
+        }
+        if (coinFlip == true) {
+            display.textContent = b
         }
         if (display.textContent == 0) {
             display.textContent = Number(display.textContent) + Number(num.id)
@@ -65,17 +72,16 @@ nums.forEach((num) => {
     })
 })
 
+
+
 plus.addEventListener('click', () => {
     if (coinFlip === true) {
         operate()
         b = ''
-    } else {
-        b = display.textContent
-        display.textContent = '';
     }
-
     if (result == '') {
         a = Number(b)
+        b = ''
     }
     else {
         a = result
@@ -90,13 +96,10 @@ minus.addEventListener('click', () => {
     if (coinFlip === true) {
         operate()
         b = ''
-    } else {
-        b = display.textContent
-        display.textContent = '';
     }
-
     if (result == '') {
         a = Number(b)
+        b = ''
     }
     else {
         a = result
@@ -110,13 +113,10 @@ multiplier.addEventListener('click', () => {
     if (coinFlip === true) {
         operate()
         b = ''
-    } else {
-        b = display.textContent
-        display.textContent = '';
     }
-
     if (result == '') {
         a = Number(b)
+        b = ''
     }
     else {
         a = result
@@ -130,13 +130,10 @@ divider.addEventListener('click', () => {
     if (coinFlip === true) {
         operate()
         b = ''
-    } else {
-        b = display.textContent
-        display.textContent = '';
     }
-
     if (result == '') {
         a = Number(b)
+        b = ''
     }
     else {
         a = result
